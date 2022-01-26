@@ -11,6 +11,17 @@ use applet;
 --
 -- )ENGINE=InnoDB character set = utf8mb4;
 
+create table user(
+    user_id bigint unsigned not null auto_increment comment '用户id',
+    union_id varchar(50) not null comment 'wx union_id',
+    wx_name varchar(30) not null comment '微信昵称',
+    real_name varchar(30) not null comment '真实姓名',
+    address varchar(255) not null comment '住址',
+    phone varchar(11) not null comment '手机号',
+    age int default 0 comment '年龄',
+    gender int default 0 comment '性别',
+    primary key(user_id) using btree
+)ENGINE=InnoDB character set = utf8mb4;
 
 -- ------------
 -- 生活物资申请表
