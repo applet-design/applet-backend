@@ -17,6 +17,9 @@ mybatis:
 
 # wx data config
 wx-properties:
-  wxSecret: c0918a593b9420a6e6acd4b6da29695c
-  wxAppid: wxc734369caf37fe10
+  wx-secret: c0918a593b9420a6e6acd4b6da29695c
+  wx-appid: wxc734369caf37fe10
+
+jwt:
+  secret:
 

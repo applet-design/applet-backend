@@ -3,14 +3,10 @@ create database applet;
 
 use applet;
 
--- drop table if exists user;
--- # 用户表
--- # 用户表字段未确定
--- create table user(
---     user_id bigint unsigned not null auto_increment comment '',
---
--- )ENGINE=InnoDB character set = utf8mb4;
-
+-----------
+-- 用户表
+-----------
+drop table if exists user;
 create table user(
     user_id bigint unsigned not null auto_increment comment '用户id',
     union_id varchar(50) not null comment 'wx union_id',
