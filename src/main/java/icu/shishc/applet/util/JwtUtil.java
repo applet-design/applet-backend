@@ -80,12 +80,12 @@ public class JwtUtil {
      * 这里不对jwt本身安全性正确性进行检查.
      * 所以有可能token错误但还能解析出id.
      */
-    public Long getUserIdByToken(String token) {
-        return JWT.decode(token).getClaim("userId").asLong();
+    public String getUserIdByToken(String token) {
+        return JWT.decode(token).getClaim("userId").asString();
     }
 
-    public Long getUnionIdByToken(String token) {
-        return JWT.decode(token).getClaim("unionId").asLong();
+    public String getUnionIdByToken(String token) {
+        return JWT.decode(token).getClaim("unionId").asString();
     }
 
     public String getJwtIdByToken(String token) {
