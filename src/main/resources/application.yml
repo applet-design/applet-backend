@@ -8,12 +8,16 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql://localhost:3306/applet?serverTimezone=GMT%2B8
+  redis:
+    host: localhost
+    port: 6379
 
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: icu.shishc.applet.entity
-  configuration:
-    map-underscore-to-camel-case: true
+
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: icu.shishc.applet.entity
+#  configuration:
+#    map-underscore-to-camel-case: true
 
 # wx data config
 wx-properties:
@@ -21,5 +25,5 @@ wx-properties:
   wx-appid: wxc734369caf37fe10
 
 jwt:
-  secret:
+  secret: temp-secret-key
 

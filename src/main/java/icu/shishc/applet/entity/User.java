@@ -1,11 +1,13 @@
 package icu.shishc.applet.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class User {
     private Long userId;
-    private Long unionId;
+    private String unionId;
     private String wxName;
     private String realName;
     private String address;
