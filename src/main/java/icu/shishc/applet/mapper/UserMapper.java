@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper {
 
-    User getUserByUnionId(String unionId);
+    User getUserByOpenId(String openId);
 
     int insertUser(User user);
 }

@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class User {
     private Long userId;
-    private String unionId;
+    private String openId;
     private String wxName;
     private String realName;
     private String address;

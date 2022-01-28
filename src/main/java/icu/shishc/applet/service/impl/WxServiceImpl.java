@@ -52,10 +52,10 @@ public class WxServiceImpl implements WxService {
         if (!loginResponse.getErrcode().equals("0")) {
             throw new CustomException("wxApi.login=> bad request.", HttpStatus.OK);
         }
-        User userInfo = userMapper.getUserByUnionId(loginResponse.getUnionid());
+        User userInfo = userMapper.getUserByOpenId(loginResponse.getOpenid());
         if (userInfo == null) {
             userInfo = new User();
-            userInfo.setUnionId(loginResponse.getUnionid());
+            userInfo.setOpenId(loginResponse.getUnionid());
             userMapper.insertUser(userInfo);
         }
         String token = jwtUtil.genTokenByWXAccount(userInfo);

@@ -9,7 +9,7 @@ use applet;
 drop table if exists user;
 create table user(
     user_id bigint unsigned not null auto_increment comment '用户id',
-    union_id varchar(50) not null comment 'wx union_id',
+    open_id varchar(50) not null comment 'wx union_id',
     wx_name varchar(30) default '' comment '微信昵称',
     real_name varchar(30) default '' comment '真实姓名',
     address varchar(255) default '' comment '住址',

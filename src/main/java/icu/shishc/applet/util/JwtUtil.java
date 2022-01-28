@@ -37,7 +37,7 @@ public class JwtUtil {
         // token
         String token = JWT.create()
                 .withClaim("userId", userinfo.getUserId())
-                .withClaim("unionId", userinfo.getUnionId())
+                .withClaim("openId", userinfo.getOpenId())
                 .withClaim("jwtId", jwtId)
                 // 过期时间. 单位是 ms 所以 *1000.
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRE_TIME * 1000))
@@ -63,7 +63,7 @@ public class JwtUtil {
             Algorithm algorithm = Algorithm.HMAC256(secretKey);
             JWTVerifier verifier = JWT.require(algorithm)
                     .withClaim("userId", getUserIdByToken(token))
-                    .withClaim("unionId", getUnionIdByToken(token))
+                    .withClaim("openId", getOpenIdByToken(token))
                     .withClaim("jwtId", jwtId)
                     .acceptExpiresAt(System.currentTimeMillis() + EXPIRE_TIME * 1000)
                     .build();
@@ -85,8 +85,8 @@ public class JwtUtil {
         return JWT.decode(token).getClaim("userId").asLong();
     }
 
-    public String getUnionIdByToken(String token) {
-        return JWT.decode(token).getClaim("unionId").asString();
+    public String getOpenIdByToken(String token) {
+        return JWT.decode(token).getClaim("openId").asString();
     }
 
     public String getJwtIdByToken(String token) {
