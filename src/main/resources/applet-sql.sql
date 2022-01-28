@@ -3,17 +3,17 @@ create database applet;
 
 use applet;
 
------------
+-- ---------
 -- 用户表
------------
+-- ---------
 drop table if exists user;
 create table user(
     user_id bigint unsigned not null auto_increment comment '用户id',
     union_id varchar(50) not null comment 'wx union_id',
-    wx_name varchar(30) not null comment '微信昵称',
-    real_name varchar(30) not null comment '真实姓名',
-    address varchar(255) not null comment '住址',
-    phone varchar(11) not null comment '手机号',
+    wx_name varchar(30) default '' comment '微信昵称',
+    real_name varchar(30) default '' comment '真实姓名',
+    address varchar(255) default '' comment '住址',
+    phone varchar(11) default '' comment '手机号',
     age int default 0 comment '年龄',
     gender int default 0 comment '性别',
     primary key(user_id) using btree
@@ -35,7 +35,7 @@ create table material_application(
     create_time datetime default current_timestamp comment '申请时间',
     approver_id bigint unsigned not null comment '审批人id',
     result int default 0 comment '申请结果，-1申请不通过 0待审批 1审批通过',
-    approval_time datetime default -1 comment '待审批该字段为-1, 否则为处理表单时间',
+    approval_time datetime comment '处理表单时间',
     refuse_reason varchar(255) comment '未通过原因',
     primary key(application_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
@@ -100,15 +100,15 @@ create table application(
     applicant_id bigint unsigned not null comment '申请人id',
     applicant_name varchar(50) not null comment '申请人真实姓名',
     address varchar(50) not null comment '申请人住址',
-    leave_time datetime default -1 comment '离开小区时间',
-    back_time datatime not null default 0 comment '回小区时间',
+    leave_time datetime not null comment '离开小区时间',
+    back_time datetime not null comment '回小区时间',
     way int not null comment '外出方式，0自驾，1火车，2高铁，3动车，4飞机',
     destination varchar(50) not null comment '外出地点', 
     reason varchar(255) not null comment '外出原因',
     create_time datetime not null default current_timestamp comment '申请提交时间',
     approver_id bigint unsigned not null comment '审批人id',
     result int default 0 comment '申请结果，-1申请不通过 0待审批 1审批通过',
-    approval_time datetime default -1 comment '待审批该字段为-1, 否则为处理表单时间',
+    approval_time datetime comment '待审批该字段为-1, 否则为处理表单时间',
     primary key(application_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
 
