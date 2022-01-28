@@ -12,9 +12,9 @@
         <result column="gender" property="gender" />
     </resultMap>
 
-    <sql id="Base_Column">
-        user_id, union_id, wx_name, real_name, address, phone, age, gender
-    </sql>
+<!--    <sql id="Base_Column">-->
+<!--        user_id, union_id, wx_name, real_name, address, phone, age, gender-->
+<!--    </sql>-->
 
     <select id="getUserByUnionId" resultMap="BaseResultMap" parameterType="java.lang.String">
         select user_id, union_id from user where union_id = #{unionId}
