@@ -47,4 +47,12 @@ public class ResultJson implements Serializable {
         result.setMessage(RESULT_FAIL_MESSAGE);
         return result;
     }
+
+    public static ResultJson fail(int code, String msg) {
+        ResultJson result = new ResultJson();
+        result.setMessage(msg);
+        result.setCode(code);
+        result.setData(null);
+        return result;
+    }
 }

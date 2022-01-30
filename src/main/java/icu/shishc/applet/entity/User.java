@@ -11,6 +11,7 @@ public class User {
     private Long userId;
     private String openId;
     private String wxName;
+    private String avatar;
     private String realName;
     private String address;
     private String phone;

@@ -28,7 +28,7 @@ public class TokenRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String token = authenticationToken.getPrincipal().toString();
-        String openId = jwtUtil.getUnionIdByToken(token);
+        String openId = jwtUtil.getOpenIdByToken(token);
         String userId = String.valueOf(jwtUtil.getUserIdByToken(token));
         if (StringUtils.isEmpty(openId)) {
             throw new TokenException("TokenRealm.doGetAuthenticationInfo=> openId null.");

@@ -12,6 +12,7 @@ create table user(
     open_id varchar(50) not null comment 'wx union_id',
     wx_name varchar(30) default '' comment '微信昵称',
     real_name varchar(30) default '' comment '真实姓名',
+    avatar varchar(255) default '' comment '用户微信头像链接',
     address varchar(255) default '' comment '住址',
     phone varchar(11) default '' comment '手机号',
     age int default 0 comment '年龄',
