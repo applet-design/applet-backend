@@ -55,7 +55,7 @@ public class WxServiceImpl implements WxService {
         User userInfo = userMapper.getUserByOpenId(loginResponse.getOpenid());
         if (userInfo == null) {
             userInfo = new User();
-            userInfo.setOpenId(loginResponse.getUnionid());
+            userInfo.setOpenId(loginResponse.getOpenid());
             userMapper.insertUser(userInfo);
         }
         String token = jwtUtil.genTokenByWXAccount(userInfo);

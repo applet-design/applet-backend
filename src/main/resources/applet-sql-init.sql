@@ -1,0 +1,1 @@
+insert into user(open_id) values ('shishc_wx_open_id');

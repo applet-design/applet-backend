@@ -6,6 +6,7 @@
         <result column="open_id" property="openId" />
         <result column="wx_name" property="wxName" />
         <result column="real_name" property="realName" />
+        <result column="avatar" property="avatar" />
         <result column="address" property="address" />
         <result column="phone" property="phone" />
         <result column="age" property="age" />
@@ -13,15 +14,48 @@
     </resultMap>
 
 <!--    <sql id="Base_Column">-->
-<!--        user_id, union_id, wx_name, real_name, address, phone, age, gender-->
+<!--        user_id, open_id, wx_name, real_name, address, phone, age, gender-->
 <!--    </sql>-->
 
     <select id="getUserByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String">
         select user_id, open_id from user where open_id = #{openId}
     </select>
 
+    <select id="getUserByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select user_id, wx_name, real_name, address, phone, age, gender from user where user_id = #{userId}
+    </select>
+
+
     <insert id="insertUser" parameterType="icu.shishc.applet.entity.User">
         insert into user(open_id) values (#{openId})
     </insert>
+
+    <update id="updateUserInfo" parameterType="icu.shishc.applet.entity.User">
+        update user
+        <set>
+            <if test="wxName != null">
+                wx_name = #{wxName},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="gender != null">
+                gender = #{gender}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
 </mapper>
 
