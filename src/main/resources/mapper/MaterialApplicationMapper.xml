@@ -39,4 +39,8 @@
         delete from material_application where application_id = #{materialApplicationId}
     </delete>
 
+    <select id="getUserMaterialApplication" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from material_application where applicant_id = #{userId}
+    </select>
+
 </mapper>

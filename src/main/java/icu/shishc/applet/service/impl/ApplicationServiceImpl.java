@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -50,6 +51,11 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public Integer cancelMaterialApplicationById(Long materialApplicationId) {
         return applicationMapper.cancelMaterialApplicationById(materialApplicationId);
+    }
+
+    @Override
+    public List<MaterialApplication> getUserMaterialApplication(Long userId) {
+        return applicationMapper.getUserMaterialApplication(userId);
     }
 
 }

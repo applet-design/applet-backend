@@ -4,6 +4,8 @@ import icu.shishc.applet.entity.MaterialApplication;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface ApplicationMapper {
@@ -13,5 +15,7 @@ public interface ApplicationMapper {
     MaterialApplication getMaterialApplicationById(Long materialApplicationId);
 
     Integer cancelMaterialApplicationById(Long materialApplicationId);
+
+    List<MaterialApplication> getUserMaterialApplication(Long userId);
 
 }
