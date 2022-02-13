@@ -26,6 +26,11 @@ public class UserController {
         return ResultJson.ok(user);
     }
 
+    @RequestMapping(value = "/u", method = RequestMethod.GET)
+    public ResultJson getUserInfo(@RequestParam Long userId) {
+        return ResultJson.ok(userService.getUserInfo(userId));
+    }
+
     @RequestMapping(value = "/u/material", method = RequestMethod.GET)
     public ResultJson getUserMaterialApplication(@RequestParam Long userId) {
         List<MaterialApplication> userMaterialApplication = applicationService.getUserMaterialApplication(userId);

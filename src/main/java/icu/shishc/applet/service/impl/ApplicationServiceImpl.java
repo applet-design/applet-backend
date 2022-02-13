@@ -53,6 +53,9 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationMapper.cancelMaterialApplicationById(materialApplicationId);
     }
 
+    /**
+     * 查看用户物资申请记录
+     */
     @Override
     public List<MaterialApplication> getUserMaterialApplication(Long userId) {
         return applicationMapper.getUserMaterialApplication(userId);
