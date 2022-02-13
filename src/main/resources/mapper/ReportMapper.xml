@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="icu.shishc.applet.mapper.ReportMapper">
+    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.Report">
+        <id column="report_id" property="reportId"/>
+        <id column="name" property="name"/>
+        <id column="id_num" property="idNum"/>
+        <id column="phone" property="phone"/>
+        <id column="location" property="location"/>
+        <id column="community_id" property="communityId"/>
+        <id column="address" property="address"/>
+        <id column="way" property="way"/>
+        <id column="create_time" property="createTime"/>
+        <id column="approver_id" property="approverId"/>
+    </resultMap>
+
+    <insert id="addReport" parameterType="icu.shishc.applet.entity.Report" useGeneratedKeys="true" keyColumn="report_id" keyProperty="reportId">
+        insert into report(name, id_num, phone, location, community_id, address, way, create_time, approver_id)
+            values (#{name}, #{idNum}, #{phone}, #{location}, #{communityId}, #{address}, #{way}, now(), #{approverId})
+    </insert>
+
+</mapper>
