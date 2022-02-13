@@ -12,9 +12,13 @@ import java.util.Date;
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 
-//    @Resource
-//    ApplicationMapper applicationMapper;
+    @Resource
+    ApplicationMapper applicationMapper;
 
+    /**
+     * 添加一条物资申请
+     * @return 物资申请单id
+     */
     @Override
     public Long addMaterialApplication(MaterialApplicationParam materialApplicationParam) {
         MaterialApplication materialApplication = new MaterialApplication();
@@ -27,8 +31,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         materialApplication.setLocation(materialApplicationParam.getLocation());
         materialApplication.setApproverId(materialApplicationParam.getApproverId());
         materialApplication.setCreateTime(new Date());
-//        applicationMapper
-        return null;
+        Long applicationId = applicationMapper.addMaterialApplication(materialApplication);
+        if (applicationId == null) {
+            return null;
+        }
+        return applicationId;
     }
 
 }
