@@ -10,4 +10,8 @@ public interface ApplicationMapper {
 
     Long addMaterialApplication(MaterialApplication materialApplication);
 
+    MaterialApplication getMaterialApplicationById(Long materialApplicationId);
+
+    Integer cancelMaterialApplicationById(Long materialApplicationId);
+
 }

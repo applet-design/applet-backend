@@ -31,4 +31,12 @@
                          #{isUrgency}, #{location}, #{createTime}, #{approverId})
     </insert>
 
+    <select id="getMaterialApplicationById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from material_application where application_id = #{materialApplicationId}
+    </select>
+
+    <delete id="cancelMaterialApplicationById" parameterType="java.lang.Long">
+        delete from material_application where application_id = #{materialApplicationId}
+    </delete>
+
 </mapper>

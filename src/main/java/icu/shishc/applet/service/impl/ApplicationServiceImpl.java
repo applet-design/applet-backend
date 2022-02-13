@@ -31,11 +31,25 @@ public class ApplicationServiceImpl implements ApplicationService {
         materialApplication.setLocation(materialApplicationParam.getLocation());
         materialApplication.setApproverId(materialApplicationParam.getApproverId());
         materialApplication.setCreateTime(new Date());
-        Long applicationId = applicationMapper.addMaterialApplication(materialApplication);
-        if (applicationId == null) {
-            return null;
-        }
-        return applicationId;
+        return applicationMapper.addMaterialApplication(materialApplication);
+    }
+
+    /**
+     * 查看一条物资申请单
+     * @return materialApplication实体
+     */
+    @Override
+    public MaterialApplication getMaterialApplicationById(Long materialApplicationId) {
+        return applicationMapper.getMaterialApplicationById(materialApplicationId);
+    }
+
+    /**
+     * 取消物资申请单
+     * @return 1/0
+     */
+    @Override
+    public Integer cancelMaterialApplicationById(Long materialApplicationId) {
+        return applicationMapper.cancelMaterialApplicationById(materialApplicationId);
     }
 
 }
