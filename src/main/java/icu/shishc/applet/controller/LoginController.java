@@ -19,6 +19,7 @@ public class LoginController {
     @Resource
     JwtUtil jwtUtil;
 
+    // 登录包含注册
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultJson login(@RequestBody LoginParam loginParam) throws CustomException {
         String token = wxService.login(loginParam.getCode());

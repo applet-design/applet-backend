@@ -15,18 +15,21 @@ public class ApplicantController {
     @Resource
     ApplicationService applicationService;
 
+    // 申请物资
     @RequestMapping(value = "/material", method = RequestMethod.POST)
     public ResultJson addMaterialApplication(@RequestBody MaterialApplicationParam materialApplicationParam) {
         Long applicationId = applicationService.addMaterialApplication(materialApplicationParam);
         return ResultJson.ok(applicationId);
     }
 
+    // 查看物资申请
     @RequestMapping(value = "/material", method = RequestMethod.GET)
     public ResultJson getMaterialApplicationById(@RequestParam Long materialApplicationId) {
         MaterialApplication materialApplication = applicationService.getMaterialApplicationById(materialApplicationId);
         return ResultJson.ok(materialApplication);
     }
 
+    // 取消物资申请
     @RequestMapping(value = "/material", method = RequestMethod.DELETE)
     public ResultJson cancelMaterialApplication(@RequestParam Long materialApplicationId) {
         Integer result = applicationService.cancelMaterialApplicationById(materialApplicationId);

@@ -17,6 +17,7 @@ public class ReportController {
     @Resource
     ReportService reportService;
 
+    // 外来人员报备
     @RequestMapping(value = "/report", method = RequestMethod.POST)
     public ResultJson addReport(@RequestBody ReportParam reportParam) {
         Long reportId = reportService.addReport(reportParam);

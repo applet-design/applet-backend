@@ -20,17 +20,20 @@ public class UserController {
     @Resource
     ApplicationService applicationService;
 
+    // 用户更改信息
     @RequestMapping(value = "/u", method = RequestMethod.PUT)
     public ResultJson updateUserInfo(@RequestBody UserUpdateParam updateParam) {
         User user = userService.updateUserInfo(updateParam);
         return ResultJson.ok(user);
     }
 
+    // 获取用户信息
     @RequestMapping(value = "/u", method = RequestMethod.GET)
     public ResultJson getUserInfo(@RequestParam Long userId) {
         return ResultJson.ok(userService.getUserInfo(userId));
     }
 
+    // 查看该用户申请的物资
     @RequestMapping(value = "/u/material", method = RequestMethod.GET)
     public ResultJson getUserMaterialApplication(@RequestParam Long userId) {
         List<MaterialApplication> userMaterialApplication = applicationService.getUserMaterialApplication(userId);
