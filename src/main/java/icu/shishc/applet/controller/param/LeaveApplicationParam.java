@@ -14,6 +14,6 @@ public class LeaveApplicationParam implements Serializable {
     private Date backTime;
     private Integer way;
     private String destination;
-    private String Reason;
+    private String reason;
     private Long approverId;
 }

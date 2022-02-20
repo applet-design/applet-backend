@@ -39,18 +39,21 @@ public class ApplicantController {
         return ResultJson.ok(result);
     }
 
+    // 出小区申请
     @RequestMapping(value = "/leave", method = RequestMethod.POST)
     public ResultJson addLeaveApplication(@RequestBody LeaveApplicationParam leaveApplicationParam) {
         Long leaveId = applicationService.addLeaveApplication(leaveApplicationParam);
         return ResultJson.ok(leaveId);
     }
 
+    // 查看出小区申请
     @RequestMapping(value = "/leave", method = RequestMethod.GET)
     public ResultJson getLeaveApplication(@RequestParam Long leaveId) {
         LeaveApplication leaveApplication = applicationService.getLeaveApplication(leaveId);
         return ResultJson.ok(leaveApplication);
     }
 
+    // 取消出小区申请
     @RequestMapping(value = "/leave", method = RequestMethod.DELETE)
     public ResultJson cancelLeaveApplication(@RequestParam Long leaveId) {
         return ResultJson.ok(applicationService.cancelLeaveApplicationById(leaveId));
