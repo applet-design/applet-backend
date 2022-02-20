@@ -27,4 +27,9 @@ public class ReportServiceImpl implements ReportService {
         report.setApproverId(reportParam.getApproverId());
         return reportMapper.addReport(report);
     }
+
+    @Override
+    public Report getReportById(Long reportId) {
+        return reportMapper.selectReportById(reportId);
+    }
 }

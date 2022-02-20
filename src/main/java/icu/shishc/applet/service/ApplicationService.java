@@ -1,6 +1,8 @@
 package icu.shishc.applet.service;
 
+import icu.shishc.applet.controller.param.LeaveApplicationParam;
 import icu.shishc.applet.controller.param.MaterialApplicationParam;
+import icu.shishc.applet.entity.LeaveApplication;
 import icu.shishc.applet.entity.MaterialApplication;
 
 import java.util.List;
@@ -18,5 +20,14 @@ public interface ApplicationService {
 
     // 获取某个用户的所有申请
     List<MaterialApplication> getUserMaterialApplication(Long userId);
+
+    // 出小区申请
+    Long addLeaveApplication(LeaveApplicationParam leaveApplicationParam);
+
+    LeaveApplication getLeaveApplication(Long leaveId);
+
+    Integer cancelLeaveApplicationById(Long leaveId);
+
+    List<LeaveApplication> getUserLeaveApplication(Long userId);
 
 }

@@ -1,6 +1,8 @@
 package icu.shishc.applet.service.impl;
 
+import icu.shishc.applet.controller.param.LeaveApplicationParam;
 import icu.shishc.applet.controller.param.MaterialApplicationParam;
+import icu.shishc.applet.entity.LeaveApplication;
 import icu.shishc.applet.entity.MaterialApplication;
 import icu.shishc.applet.mapper.ApplicationMapper;
 import icu.shishc.applet.service.ApplicationService;
@@ -50,6 +52,12 @@ public class ApplicationServiceImpl implements ApplicationService {
      */
     @Override
     public Integer cancelMaterialApplicationById(Long materialApplicationId) {
+        MaterialApplication application = applicationMapper.getMaterialApplicationById(materialApplicationId);
+        // 已经取消不能再次取消. 已经拒绝或通过的不能取消
+        if (application.getIsCancel() == 1 ||
+            application.getResult() != 0) {
+            return 0;
+        }
         return applicationMapper.cancelMaterialApplicationById(materialApplicationId);
     }
 
@@ -59,6 +67,56 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public List<MaterialApplication> getUserMaterialApplication(Long userId) {
         return applicationMapper.getUserMaterialApplication(userId);
+    }
+
+    /**
+     * 添加一个出小区申请
+     * @return 申请单id
+     */
+    @Override
+    public Long addLeaveApplication(LeaveApplicationParam leaveApplicationParam) {
+        LeaveApplication leaveApplication = new LeaveApplication();
+        leaveApplication.setApplicantId(leaveApplicationParam.getApplicantId());
+        leaveApplication.setApplicantName(leaveApplicationParam.getApplicantName());
+        leaveApplication.setAddress(leaveApplicationParam.getAddress());
+        leaveApplication.setLeaveTime(leaveApplicationParam.getLeaveTime());
+        leaveApplication.setBackTime(leaveApplicationParam.getBackTime());
+        leaveApplication.setWay(leaveApplicationParam.getWay());
+        leaveApplication.setDestination(leaveApplicationParam.getDestination());
+        leaveApplication.setReason(leaveApplicationParam.getReason());
+        leaveApplication.setApproverId(leaveApplicationParam.getApproverId());
+        return applicationMapper.addLeaveApplication(leaveApplication);
+    }
+
+    /**
+     * 查看出小区申请单
+     * @return 申请单实体类
+     */
+    @Override
+    public LeaveApplication getLeaveApplication(Long leaveId) {
+        return applicationMapper.getLeaveApplicationById(leaveId);
+    }
+
+    /**
+     * 取消出小区申请
+     * @return 0/1
+     */
+    @Override
+    public Integer cancelLeaveApplicationById(Long leaveId) {
+        LeaveApplication application = applicationMapper.getLeaveApplicationById(leaveId);
+        if (application.getIsCancel() == 1 ||
+            application.getResult() != 0) {
+            return 0;
+        }
+        return applicationMapper.cancelLeaveApplicationById(leaveId);
+    }
+
+    /**
+     * 查看某个用户的出小区申请
+     */
+    @Override
+    public List<LeaveApplication> getUserLeaveApplication(Long userId) {
+        return applicationMapper.getUserLeaveApplication(userId);
     }
 
 }

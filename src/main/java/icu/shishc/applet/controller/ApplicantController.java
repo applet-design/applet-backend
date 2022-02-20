@@ -1,6 +1,8 @@
 package icu.shishc.applet.controller;
 
+import icu.shishc.applet.controller.param.LeaveApplicationParam;
 import icu.shishc.applet.controller.param.MaterialApplicationParam;
+import icu.shishc.applet.entity.LeaveApplication;
 import icu.shishc.applet.entity.MaterialApplication;
 import icu.shishc.applet.service.ApplicationService;
 import icu.shishc.applet.util.ResultJson;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+// 申请接口
 @RestController
 @RequestMapping("/api/apply")
 public class ApplicantController {
@@ -34,6 +37,23 @@ public class ApplicantController {
     public ResultJson cancelMaterialApplication(@RequestParam Long materialApplicationId) {
         Integer result = applicationService.cancelMaterialApplicationById(materialApplicationId);
         return ResultJson.ok(result);
+    }
+
+    @RequestMapping(value = "/leave", method = RequestMethod.POST)
+    public ResultJson addLeaveApplication(@RequestBody LeaveApplicationParam leaveApplicationParam) {
+        Long leaveId = applicationService.addLeaveApplication(leaveApplicationParam);
+        return ResultJson.ok(leaveId);
+    }
+
+    @RequestMapping(value = "/leave", method = RequestMethod.GET)
+    public ResultJson getLeaveApplication(@RequestParam Long leaveId) {
+        LeaveApplication leaveApplication = applicationService.getLeaveApplication(leaveId);
+        return ResultJson.ok(leaveApplication);
+    }
+
+    @RequestMapping(value = "/leave", method = RequestMethod.DELETE)
+    public ResultJson cancelLeaveApplication(@RequestParam Long leaveId) {
+        return ResultJson.ok(applicationService.cancelLeaveApplicationById(leaveId));
     }
 
 }

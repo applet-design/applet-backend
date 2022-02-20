@@ -4,28 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 生活物资申请实体类.
+ * 出小区申请表
  */
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class MaterialApplication implements Serializable {
-    private Long applicationId;
+public class LeaveApplication {
+    private Long leaveId;
     private Long applicantId;
     private String applicantName;
-    private String applicantReason;
-    private String materialName;
-    private String materialNum;
-    private Integer isUrgency;
+    private String address;
+    private Date leaveTime;
+    private Date backTime;
+    private Integer way;
+    private String destination;
     private Integer isCancel;
-    private String location;
+    private String Reason;
+    private Date createTime;
     private Long approverId;
     private Integer result;
-    private Date createTime;
-    private Date approvalTime;
     private String refuseReason;
+    private Date approvalTime;
 }

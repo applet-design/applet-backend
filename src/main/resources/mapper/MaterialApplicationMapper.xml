@@ -8,6 +8,7 @@
         <id column="applicant_reason" property="applicantReason"/>
         <id column="material_name" property="materialName"/>
         <id column="material_num" property="materialNum"/>
+        <id column="is_cancel" property="isCancel"/>
         <id column="is_urgency" property="isUrgency"/>
         <id column="location" property="location"/>
         <id column="approver_id" property="approverId"/>

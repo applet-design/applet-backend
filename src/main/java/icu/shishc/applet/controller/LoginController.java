@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+// 登录接口
 @RestController
 @RequestMapping("/api")
 public class LoginController {

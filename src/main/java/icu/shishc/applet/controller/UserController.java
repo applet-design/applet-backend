@@ -1,6 +1,7 @@
 package icu.shishc.applet.controller;
 
 import icu.shishc.applet.controller.param.UserUpdateParam;
+import icu.shishc.applet.entity.LeaveApplication;
 import icu.shishc.applet.entity.MaterialApplication;
 import icu.shishc.applet.entity.User;
 import icu.shishc.applet.service.ApplicationService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+// 用户接口
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -38,6 +40,12 @@ public class UserController {
     public ResultJson getUserMaterialApplication(@RequestParam Long userId) {
         List<MaterialApplication> userMaterialApplication = applicationService.getUserMaterialApplication(userId);
         return ResultJson.ok(userMaterialApplication);
+    }
+
+    @RequestMapping(value = "/u/leave", method = RequestMethod.GET)
+    public ResultJson getUserLeaveApplication(@RequestParam Long userId) {
+        List<LeaveApplication> leaveApplications = applicationService.getUserLeaveApplication(userId);
+        return ResultJson.ok(leaveApplications);
     }
 
 }
