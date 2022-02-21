@@ -81,8 +81,8 @@ drop table if exists report;
 create table report(
     report_id bigint unsigned not null auto_increment comment '报备表单id',
     name varchar(10) not null comment '外来人员姓名',
-    id_num int not null comment '身份证号',
-    phone int not null comment '手机号',
+    id_num varchar(18) not null comment '身份证号',
+    phone varchar(11) not null comment '手机号',
     location varchar(255) not null comment '家庭住址，来前住址',
     address varchar(255) not null comment '来后住址',
     way int not null comment '来往方式',

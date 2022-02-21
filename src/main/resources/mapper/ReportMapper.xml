@@ -18,4 +18,7 @@
             values (#{name}, #{idNum}, #{phone}, #{location}, #{address}, #{way}, now(), #{approverId})
     </insert>
 
+    <select id="selectReportById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select report_id, name, id_num, phone, location, address, way, create_time, approver_id from report where report_id = #{reportId}
+    </select>
 </mapper>
