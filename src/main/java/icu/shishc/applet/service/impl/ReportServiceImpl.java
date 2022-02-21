@@ -21,7 +21,6 @@ public class ReportServiceImpl implements ReportService {
         report.setIdNum(reportParam.getIdNum());
         report.setPhone(reportParam.getPhone());
         report.setLocation(reportParam.getLocation());
-        report.setCommunityId(reportParam.getCommunityId());
         report.setAddress(reportParam.getAddress());
         report.setWay(reportParam.getWay());
         report.setApproverId(reportParam.getApproverId());

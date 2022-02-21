@@ -7,7 +7,6 @@
         <id column="id_num" property="idNum"/>
         <id column="phone" property="phone"/>
         <id column="location" property="location"/>
-        <id column="community_id" property="communityId"/>
         <id column="address" property="address"/>
         <id column="way" property="way"/>
         <id column="create_time" property="createTime"/>
@@ -15,8 +14,8 @@
     </resultMap>
 
     <insert id="addReport" parameterType="icu.shishc.applet.entity.Report" useGeneratedKeys="true" keyColumn="report_id" keyProperty="reportId">
-        insert into report(name, id_num, phone, location, community_id, address, way, create_time, approver_id)
-            values (#{name}, #{idNum}, #{phone}, #{location}, #{communityId}, #{address}, #{way}, now(), #{approverId})
+        insert into report(name, id_num, phone, location, address, way, create_time, approver_id)
+            values (#{name}, #{idNum}, #{phone}, #{location}, #{address}, #{way}, now(), #{approverId})
     </insert>
 
 </mapper>

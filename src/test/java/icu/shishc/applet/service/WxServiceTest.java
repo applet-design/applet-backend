@@ -1,7 +1,10 @@
 package icu.shishc.applet.service;
 
 import com.alibaba.fastjson.JSONObject;
+import icu.shishc.applet.entity.User;
 import icu.shishc.applet.exception.CustomException;
+import icu.shishc.applet.mapper.UserMapper;
+import icu.shishc.applet.util.JwtUtil;
 import icu.shishc.applet.vo.WxLoginResponseVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +32,23 @@ public class WxServiceTest {
 
     @Resource
     RestTemplate restTemplate;
+    @Resource
+    UserMapper userMapper;
+    @Resource
+    JwtUtil jwtUtil;
+
+    @Test
+    public void userTest() {
+        User userInfo = null;
+        if (userInfo == null) {
+            userInfo = new User();
+            userInfo.setOpenId("testOpenId");
+            userMapper.insertUser(userInfo);
+        }
+        String token = jwtUtil.genTokenByWXAccount(userInfo);
+        Long userId = userInfo.getUserId();
+        System.out.println(token + "\n" + "-------" + "\n" + "userId: " + userId);
+    }
 
     @Test
     public void wxApiTest() throws CustomException {

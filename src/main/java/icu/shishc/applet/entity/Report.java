@@ -20,7 +20,6 @@ public class Report {
     private String phone;
     // 来前住址
     private String location;
-    private Long communityId;
     // 来后住处
     private String address;
     //0自驾，1火车，2高铁，3动车，4飞机

@@ -5,17 +5,13 @@
         <id column="user_id" property="userId"/>
         <result column="open_id" property="openId" />
         <result column="wx_name" property="wxName" />
-        <result column="real_name" property="realName" />
         <result column="avatar" property="avatar" />
+        <result column="real_name" property="realName" />
         <result column="address" property="address" />
         <result column="phone" property="phone" />
         <result column="age" property="age" />
         <result column="gender" property="gender" />
     </resultMap>
-
-<!--    <sql id="Base_Column">-->
-<!--        user_id, open_id, wx_name, real_name, address, phone, age, gender-->
-<!--    </sql>-->
 
     <select id="getUserByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String">
         select user_id, open_id from user where open_id = #{openId}
@@ -25,8 +21,8 @@
         select user_id, wx_name, real_name, address, phone, age, gender from user where user_id = #{userId}
     </select>
 
-
-    <insert id="insertUser" parameterType="icu.shishc.applet.entity.User">
+    <!-- useGeneratedKeys keyColumn keyProperty 这三个属性确保了新插入一条记录可以返回自动生成的主键id -->
+    <insert id="insertUser" parameterType="icu.shishc.applet.entity.User" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
         insert into user(open_id) values (#{openId})
     </insert>
 

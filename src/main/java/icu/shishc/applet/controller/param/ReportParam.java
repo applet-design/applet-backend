@@ -10,8 +10,9 @@ public class ReportParam implements Serializable {
     private String idNum;
     private String phone;
     private String location;
-    private Long communityId;
     private String address;
     private Integer way;
+    // 指的是车次或班次.
+    private String tripNum;
     private Long approverId;
 }

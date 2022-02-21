@@ -15,7 +15,7 @@
         <id column="result" property="result"/>
         <id column="create_time" property="createTime"/>
         <id column="approval_time" property="approvalTime"/>
-        <id column="refuse-reason" property="refuseReason"/>
+        <id column="refuse-_eason" property="refuseReason"/>
     </resultMap>
 
     <insert id="addMaterialApplication" parameterType="icu.shishc.applet.entity.MaterialApplication" useGeneratedKeys="true" keyColumn="application_id" keyProperty="applicationId">
@@ -36,9 +36,9 @@
         select * from material_application where application_id = #{materialApplicationId}
     </select>
 
-    <delete id="cancelMaterialApplicationById" parameterType="java.lang.Long">
-        delete from material_application where application_id = #{materialApplicationId}
-    </delete>
+    <update id="cancelMaterialApplicationById" parameterType="java.lang.Long">
+        update material_application set is_cancel = 1 where application_id = #{materialApplicationId}
+    </update>
 
     <select id="getUserMaterialApplication" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select * from material_application where applicant_id = #{userId}

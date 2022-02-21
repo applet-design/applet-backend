@@ -19,7 +19,7 @@ public class MaterialApplication implements Serializable {
     private String applicantName;
     private String applicantReason;
     private String materialName;
-    private String materialNum;
+    private Integer materialNum;
     private Integer isUrgency;
     private Integer isCancel;
     private String location;
