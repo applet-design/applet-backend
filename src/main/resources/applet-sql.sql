@@ -9,7 +9,7 @@ use applet;
 drop table if exists user;
 create table user(
     user_id bigint unsigned not null auto_increment comment '用户id',
-    open_id varchar(50) not null comment 'wx union_id',
+    open_id varchar(50) not null comment 'wx open_id',
     wx_name varchar(30) default '' comment '微信昵称',
     real_name varchar(30) default '' comment '真实姓名',
     avatar varchar(255) default '' comment '用户微信头像链接',
@@ -84,7 +84,6 @@ create table report(
     id_num int not null comment '身份证号',
     phone int not null comment '手机号',
     location varchar(255) not null comment '家庭住址，来前住址',
---     community_id bigint unsigned not null comment '小区id',
     address varchar(255) not null comment '来后住址',
     way int not null comment '来往方式',
     create_time datetime default current_timestamp comment '报备时间',
@@ -98,7 +97,6 @@ create table report(
 drop table if exists application;
 create table application(
     application_id bigint unsigned not null auto_increment comment '申请单id',
---     community_id bigint unsigned not null comment '小区id',
     applicant_id bigint unsigned not null comment '申请人id',
     applicant_name varchar(50) not null comment '申请人真实姓名',
     address varchar(50) not null comment '申请人住址',
@@ -116,16 +114,16 @@ create table application(
     primary key(application_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
 
--- ------------
--- 小区统计表
--- ------------
-drop table if exists community;
-create table community(
-    community_id bigint unsigned not null auto_increment comment '小区id',
-    community_name varchar(255) not null comment '小区名称',
-    address varchar(255) not null comment '小区地址',
-    primary key(community_id) using btree
-)ENGINE=InnoDB character set = utf8mb4;
+-- -- ------------
+-- -- 小区统计表
+-- -- ------------
+-- drop table if exists community;
+-- create table community(
+--     community_id bigint unsigned not null auto_increment comment '小区id',
+--     community_name varchar(255) not null comment '小区名称',
+--     address varchar(255) not null comment '小区地址',
+--     primary key(community_id) using btree
+-- )ENGINE=InnoDB character set = utf8mb4;
 
 -- ------------
 -- 通知表
