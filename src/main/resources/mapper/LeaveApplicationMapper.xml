@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="icu.shishc.applet.mapper.ApplicationMapper">
+    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.LeaveApplication">
+        <id column="application_id" property="applicationId"/>
+        <result column="applicant_id" property="applicantId"/>
+        <result column="applicant_name" property="applicantName"/>
+        <result column="address" property="address"/>
+        <result column="leave_time" property="leaveTime"/>
+        <result column="back_time" property="backTime"/>
+        <result column="way" property="way"/>
+        <result column="destination" property="destination"/>
+        <result column="is_cancel" property="isCancel"/>
+        <result column="reason" property="reason"/>
+        <result column="create_time" property="createTime"/>
+        <result column="approver_id" property="approverId"/>
+        <result column="result" property="result"/>
+        <result column="refuseReason" property="refuseReason"/>
+        <result column="approval_time" property="approvalTime"/>
+    </resultMap>
+
+    <insert id="addLeaveApplication" parameterType="icu.shishc.applet.entity.LeaveApplication" useGeneratedKeys="true" keyColumn="application_id" keyProperty="applicationId">
+        insert into application(application_id,
+                                applicant_id,
+                                applicant_name,
+                                address,
+                                leave_time,
+                                back_time,
+                                way,
+                                destination,
+                                is_cancel,
+                                reason,
+                                create_time,
+                                approver_id,
+                                result,
+                                refuseReason,
+                                approval_time)
+                 values (#{applicationId}, #{applicantId}, #{applicantName}, #{address}, #{leaveTime}, #{backTime}, #{way}
+                         #{destination}, #{isCancel}, #{reason}, #{createTime}, #{approverId}, #{result}, #{refuseReason}, #{approvalTime})
+    </insert>
+
+    <select id="getLeaveApplicationById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from application where application_id = #{applicationId}
+    </select>
+
+    <update id="cancelLeaveApplicationById" parameterType="java.lang.Long">
+        update application set is_cancel = 1 where application_id = #{applicationId}
+    </update>
+
+    <select id="getUserLeaveApplication" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from application where applicant_id = #{userId}
+    </select>
+
+</mapper>
