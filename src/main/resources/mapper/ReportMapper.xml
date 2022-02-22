@@ -3,14 +3,14 @@
 <mapper namespace="icu.shishc.applet.mapper.ReportMapper">
     <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.Report">
         <id column="report_id" property="reportId"/>
-        <id column="name" property="name"/>
-        <id column="id_num" property="idNum"/>
-        <id column="phone" property="phone"/>
-        <id column="location" property="location"/>
-        <id column="address" property="address"/>
-        <id column="way" property="way"/>
-        <id column="create_time" property="createTime"/>
-        <id column="approver_id" property="approverId"/>
+        <result column="name" property="name"/>
+        <result column="id_num" property="idNum"/>
+        <result column="phone" property="phone"/>
+        <result column="location" property="location"/>
+        <result column="address" property="address"/>
+        <result column="way" property="way"/>
+        <result column="create_time" property="createTime"/>
+        <result column="approver_id" property="approverId"/>
     </resultMap>
 
     <insert id="addReport" parameterType="icu.shishc.applet.entity.Report" useGeneratedKeys="true" keyColumn="report_id" keyProperty="reportId">

@@ -3,19 +3,19 @@
 <mapper namespace="icu.shishc.applet.mapper.ApplicationMapper">
     <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.MaterialApplication">
         <id column="application_id" property="applicationId"/>
-        <id column="applicant_id" property="applicantId"/>
-        <id column="applicant_name" property="applicantName"/>
-        <id column="applicant_reason" property="applicantReason"/>
-        <id column="material_name" property="materialName"/>
-        <id column="material_num" property="materialNum"/>
-        <id column="is_cancel" property="isCancel"/>
-        <id column="is_urgency" property="isUrgency"/>
-        <id column="location" property="location"/>
-        <id column="approver_id" property="approverId"/>
-        <id column="result" property="result"/>
-        <id column="create_time" property="createTime"/>
-        <id column="approval_time" property="approvalTime"/>
-        <id column="refuse-_eason" property="refuseReason"/>
+        <result column="applicant_id" property="applicantId"/>
+        <result column="applicant_name" property="applicantName"/>
+        <result column="applicant_reason" property="applicantReason"/>
+        <result column="material_name" property="materialName"/>
+        <result column="material_num" property="materialNum"/>
+        <result column="is_cancel" property="isCancel"/>
+        <result column="is_urgency" property="isUrgency"/>
+        <result column="location" property="location"/>
+        <result column="approver_id" property="approverId"/>
+        <result column="result" property="result"/>
+        <result column="create_time" property="createTime"/>
+        <result column="approval_time" property="approvalTime"/>
+        <result column="refuse-_eason" property="refuseReason"/>
     </resultMap>
 
     <insert id="addMaterialApplication" parameterType="icu.shishc.applet.entity.MaterialApplication" useGeneratedKeys="true" keyColumn="application_id" keyProperty="applicationId">
