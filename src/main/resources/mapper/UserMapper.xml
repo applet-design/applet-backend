@@ -11,6 +11,7 @@
         <result column="phone" property="phone" />
         <result column="age" property="age" />
         <result column="gender" property="gender" />
+        <result column="user_identity" property="userIdentity" />
     </resultMap>
 
     <select id="getUserByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String">

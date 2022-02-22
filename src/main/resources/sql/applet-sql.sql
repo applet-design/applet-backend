@@ -17,6 +17,7 @@ create table user(
     phone varchar(11) default '' comment '手机号',
     age int default 0 comment '年龄',
     gender int default 0 comment '性别',
+    user_identity tinyint default 0 not null comment '0:业主, 1:物业',
     primary key(user_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
 
@@ -136,4 +137,11 @@ create table notice(
     notice_title varchar(255) not null comment '标题',
     notice_content longtext comment '内容',
     primary key(notice_id) using btree
+)ENGINE=InnoDB character set = utf8mb4;
+
+drop table if exists perms;
+create table perms(
+    user_identity tinyint default 0 not null comment '0:业主, 1:物业',
+    entity VARCHAR(10),
+    perm VARCHAR(10)
 )ENGINE=InnoDB character set = utf8mb4;
