@@ -15,7 +15,7 @@
         <result column="result" property="result"/>
         <result column="create_time" property="createTime"/>
         <result column="approval_time" property="approvalTime"/>
-        <result column="refuse-_eason" property="refuseReason"/>
+        <result column="refuse_reason" property="refuseReason"/>
     </resultMap>
 
     <insert id="addMaterialApplication" parameterType="icu.shishc.applet.entity.MaterialApplication" useGeneratedKeys="true" keyColumn="application_id" keyProperty="applicationId">

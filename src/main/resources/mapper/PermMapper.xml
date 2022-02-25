@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="icu.shishc.applet.mapper.PermMapper">
+    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.Perms">
+        <id column="user_identity" property="userIdentity"/>
+        <result column="entity" property="entity"/>
+        <result column="perm" property="perm"/>
+    </resultMap>
+
+    <select id="getPermsByUserIdentity" resultMap="BaseResultMap">
+        select user_identity, entity, perm from perms where user_identity = #{userIdentity}
+    </select>
+
+</mapper>
