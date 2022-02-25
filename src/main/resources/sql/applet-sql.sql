@@ -65,13 +65,14 @@ drop table if exists info;
 create table info(
     info_id bigint unsigned not null auto_increment comment '表单id',
     person_id bigint unsigned not null comment '用户id',
+    submit_date varchar(20) not null comment 'x年x月x日的填报',
     real_name varchar(50) not null comment '真实姓名',
     address varchar(50) not null comment '住址',
     temperature float not null comment '温度',
     symptom int not null default 0 comment '疑似症状, 0无,1发烧，2头痛，3腹泻',
     location varchar(50) not null comment '当前地理位置',
-    last_time datetime not null comment '最后一次核酸时间',
-    create_time datetime not null default current_timestamp comment '表单提交时间',
+    last_time varchar(20) not null comment '最后一次核酸时间',
+--     create_time datetime not null default current_timestamp comment '表单提交时间',
     primary key(info_id)
 )ENGINE=InnoDB character set = utf8mb4;
 
@@ -115,17 +116,6 @@ create table application(
     primary key(application_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
 
--- -- ------------
--- -- 小区统计表
--- -- ------------
--- drop table if exists community;
--- create table community(
---     community_id bigint unsigned not null auto_increment comment '小区id',
---     community_name varchar(255) not null comment '小区名称',
---     address varchar(255) not null comment '小区地址',
---     primary key(community_id) using btree
--- )ENGINE=InnoDB character set = utf8mb4;
-
 -- ------------
 -- 通知表
 -- ------------
@@ -139,6 +129,9 @@ create table notice(
     primary key(notice_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
 
+-- ------------
+-- 权限表
+-- ------------
 drop table if exists perms;
 create table perms(
     user_identity tinyint default 0 not null comment '0:业主, 1:物业',

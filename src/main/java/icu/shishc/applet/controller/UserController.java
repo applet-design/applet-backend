@@ -42,6 +42,7 @@ public class UserController {
         return ResultJson.ok(userMaterialApplication);
     }
 
+    // 查看某位用户的离开申请列表
     @RequestMapping(value = "/u/leave", method = RequestMethod.GET)
     public ResultJson getUserLeaveApplication(@RequestParam Long userId) {
         List<LeaveApplication> leaveApplications = applicationService.getUserLeaveApplication(userId);
