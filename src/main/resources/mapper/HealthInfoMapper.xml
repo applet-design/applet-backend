@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="icu.shishc.applet.mapper.HealthInfoMapper">
+    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.HealthInfo">
+        <id column="info_id" property="infoId"/>
+        <result column="person_id" property="personId"/>
+        <result column="submit_date" property="submitDate"/>
+        <result column="real_name" property="realName"/>
+        <result column="address" property="address"/>
+        <result column="temperature" property="temperature"/>
+        <result column="symptom" property="symptom"/>
+        <result column="location" property="location"/>
+        <result column="last_time" property="lastTime"/>
+    </resultMap>
+
+    <select id="searchUserTodaySubmit" resultType="java.lang.Long">
+        select info_id from info where person_id = #{userId} and submit_date = #{today}
+    </select>
+
+    <insert id="addTodayInfo" parameterType="icu.shishc.applet.entity.HealthInfo" useGeneratedKeys="true" keyColumn="info_id" keyProperty="infoId">
+        insert into info(person_id, submit_date, real_name, address, temperature, location, last_time) VALUES
+                        (#{personId}, #{submitDate}, #{realName}, #{address}, #{temperature}, #{location}, #{lastTime})
+    </insert>
+
+    <select id="getInfoByHealthInfoId" resultMap="BaseResultMap">
+        select * from info where info_id = #{healthInfoId}
+    </select>
+
+</mapper>
