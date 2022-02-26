@@ -51,10 +51,11 @@ create table material_statistics (
     material_id bigint unsigned not null auto_increment comment '物资id',
     material_name varchar(50) not null comment '物资名称',
     material_num int not null comment '申请数量',
+    price float not null comment '物资单价',
     receive_id bigint unsigned not null comment '接收者id',
     from_id bigint unsigned not null comment '发送者id，一般是管理员',
     create_time datetime default current_timestamp comment '接收时间',
-    money float not null comment '共多少money',
+    cost float not null comment '共多少money',
     primary key(material_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
 
@@ -138,3 +139,41 @@ create table perms(
     entity VARCHAR(10),
     perm VARCHAR(10)
 )ENGINE=InnoDB character set = utf8mb4;
+
+-- ------------
+-- 种类表
+-- ------------
+drop table if exists kinds;
+create table kinds(
+    name varchar(50) not null primary key,
+    id int not null
+)ENGINE=InnoDB character set = utf8mb4;
+
+-- ------------
+-- 消息列表
+-- ------------
+drop table if exists unread;
+create table unread(
+    unread_id bigint unsigned not null auto_increment primary key,
+    kind_id int not null comment '哪一类',
+    row_id bigint unsigned not null '该条记录id',
+    sender_id bigint unsigned not null comment '发起者id',
+    send_time datetime not null comment '发起时间',
+    reciever_id bigint unsigned not null comment '接收者id'
+)ENGINE=InnoDB character set = utf8mb4;
+
+-- ------------
+-- 未通过的申请
+-- ------------
+drop table if exists unpass;
+create table unpass(
+    kind_id int not null comment '',
+    row_id bigint unsigned not null primary key comment ''
+)ENGINE=InnoDB character set = utf8mb4;
+/* drop table if exists message;
+create table message(
+    id bigint not null auto_increment comment 'id',
+    title varchar(255) not null comment '',
+    type int not null comment '',
+    
+)ENGINE=InnoDB character set = utf8mb4; */
