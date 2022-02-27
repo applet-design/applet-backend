@@ -7,6 +7,7 @@ import icu.shishc.applet.service.ReportService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -30,5 +31,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Report getReportById(Long reportId) {
         return reportMapper.selectReportById(reportId);
+    }
+
+    @Override
+    public List<Report> getReportList() {
+        return null;
     }
 }
