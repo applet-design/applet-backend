@@ -16,12 +16,6 @@ public class NoticeController {
     @Resource
     NoticeService noticeService;
 
-    @RequestMapping(value = "/notice", method = RequestMethod.POST)
-    public ResultJson addNotice(@RequestBody NoticeParam noticeParam){
-        Long noticeId = noticeService.addNotice(noticeParam);
-        return ResultJson.ok(noticeId);
-    }
-
     @RequestMapping(value = "/notice", method = RequestMethod.GET)
     public ResultJson getNoticeById(@RequestParam Long noticeId){
         Notice notice = noticeService.getNoticeById(noticeId);
