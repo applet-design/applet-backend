@@ -35,6 +35,6 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<Report> getReportList() {
-        return null;
+        return reportMapper.getReportList();
     }
 }
