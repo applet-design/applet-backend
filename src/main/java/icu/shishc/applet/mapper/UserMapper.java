@@ -4,6 +4,8 @@ import icu.shishc.applet.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserMapper {
@@ -15,4 +17,8 @@ public interface UserMapper {
     int insertUser(User user);
 
     int updateUserInfo(User user);
+
+    List<User> getUserByList(List<Long> userIds);
+
+    List<Long> getSystemUserIds();
 }

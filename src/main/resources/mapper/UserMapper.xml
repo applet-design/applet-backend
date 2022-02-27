@@ -54,5 +54,16 @@
         </set>
         where user_id = #{userId}
     </update>
+
+    <select id="getUserByList" resultMap="icu.shishc.applet.entity.User">
+        select * from user where user_id =
+                                 <foreach collection="userIds" item="userId">
+                                     #{userId}
+                                 </foreach>
+    </select>
+
+    <select id="getSystemUserIds">
+        select user_id from user
+    </select>
 </mapper>
 

@@ -48,13 +48,13 @@ create table material_application(
 -- ------------
 drop table if exists material_statistics;
 create table material_statistics (
-    material_id bigint unsigned not null auto_increment comment '物资id',
+    material_form_id bigint unsigned not null auto_increment comment '物资id',
     material_name varchar(50) not null comment '物资名称',
     material_num int not null comment '申请数量',
     price float not null comment '物资单价',
     receive_id bigint unsigned not null comment '接收者id',
     from_id bigint unsigned not null comment '发送者id，一般是管理员',
-    create_time datetime default current_timestamp comment '接收时间',
+    create_time datetime default current_timestamp comment '发放完成时间',
     cost float not null comment '共多少money',
     primary key(material_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
@@ -152,14 +152,18 @@ create table kinds(
 -- ------------
 -- 消息列表
 -- ------------
-drop table if exists unread;
-create table unread(
-    unread_id bigint unsigned not null auto_increment primary key,
+drop table if exists message;
+create table message(
+    message_id bigint unsigned not null auto_increment primary key,
     kind_id int not null comment '哪一类',
-    row_id bigint unsigned not null '该条记录id',
+    row_id bigint unsigned not null comment '该条记录id',
     sender_id bigint unsigned not null comment '发起者id',
+    sender_name varchar(255) not null comment '发起者wx姓名',
+    title varchar(255) not null comment '消息头',
+    content varchar(255) not null comment '消息体',
     send_time datetime not null comment '发起时间',
-    reciever_id bigint unsigned not null comment '接收者id'
+    receive_id bigint unsigned not null comment '接收者id',
+    is_read int default 0 comment '0：消息未读，1：消息已读'
 )ENGINE=InnoDB character set = utf8mb4;
 
 -- ------------
@@ -167,8 +171,8 @@ create table unread(
 -- ------------
 drop table if exists unpass;
 create table unpass(
-    kind_id int not null comment '',
-    row_id bigint unsigned not null primary key comment ''
+    kind_id int not null comment '记录属于哪一类',
+    row_id bigint unsigned not null primary key comment '未通过的记录'
 )ENGINE=InnoDB character set = utf8mb4;
 /* drop table if exists message;
 create table message(

@@ -26,4 +26,15 @@
         select * from info where info_id = #{healthInfoId}
     </select>
 
+    <select id="userSubmitLastTenDays" resultType="java.lang.Long">
+        select info_id from info where submit_date =
+                                       <foreach collection="days" item="day">
+                                           #{day}
+                                       </foreach>
+    </select>
+
+    <select id="getSubmitListSomeday" resultType="java.lang.Long">
+        select person_id from info where submit_date = #{date} group by submit_date
+    </select>
+
 </mapper>
