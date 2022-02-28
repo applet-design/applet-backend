@@ -51,4 +51,9 @@
         select * from application where applicant_id = #{userId}
     </select>
 
+    <select id="getAllLeaveApplication" resultMap="BaseResultMap">
+        select * from application where is_cancel = 0
+    </select>
+
+<!--    <select id="getPendingLeaveApplication" resultMap=""-->
 </mapper>
