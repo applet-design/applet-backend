@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="icu.shishc.applet.mapper.MaterialMapper">
+    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.Material">
+        <id column="material_id" property="materialId"/>
+        <result column="material_name" property="materialName"/>
+    </resultMap>
+
+    <select id="getMaterialList" resultMap="BaseResultMap">
+        select * from material
+    </select>
+
+    <insert id="addMaterial" parameterType="icu.shishc.applet.entity.Material" useGeneratedKeys="true" keyColumn="material_id" keyProperty="materialId">
+        insert into material(material_name) VALUES (#{materialName})
+    </insert>
+
+    <delete id="deleteMaterial">
+        delete from material where material_id = #{materialId}
+    </delete>
+
+</mapper>
