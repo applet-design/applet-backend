@@ -22,6 +22,16 @@ create table user(
 )ENGINE=InnoDB character set = utf8mb4;
 
 -- ------------
+-- 生活物资
+-- ------------
+drop table if exists material;
+create table material(
+    material_id bigint unsigned not null auto_increment,
+    material_name varchar(255) not null,
+    primary key(material_id) using btree
+)ENGINE=InnoDB character set = utf8mb4;
+
+-- ------------
 -- 生活物资申请表
 -- ------------
 drop table if exists material_application;
@@ -32,6 +42,8 @@ create table material_application(
     applicant_reason varchar(255) not null comment '申请原因',
     material_name varchar(50) not null comment '申请物资',
     material_num int not null comment '物资数量',
+    price float default 0 comment '物资单价',
+    cost float default 0 comment '物资总花费',
     is_urgency tinyint default 0 comment '是否紧急，0:不紧急，1:紧急',
     is_cancel tinyint default 0 comment '是否取消申请，0不取消，1已经取消',
     location varchar(255) not null comment '送到哪里',

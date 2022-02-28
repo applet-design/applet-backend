@@ -20,6 +20,8 @@ public class MaterialApplication implements Serializable {
     private String applicantReason;
     private String materialName;
     private Integer materialNum;
+    private Float price;
+    private Float cost;
     private Integer isUrgency;
     private Integer isCancel;
     private String location;
