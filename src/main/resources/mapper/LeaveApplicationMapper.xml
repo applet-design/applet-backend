@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="icu.shishc.applet.mapper.ApplicationMapper">
-    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.LeaveApplication">
+    <resultMap id="LeaveBaseResultMap" type="icu.shishc.applet.entity.LeaveApplication">
         <id column="application_id" property="applicationId"/>
         <result column="applicant_id" property="applicantId"/>
         <result column="applicant_name" property="applicantName"/>
@@ -39,7 +39,7 @@
                          #{destination}, #{isCancel}, #{reason}, #{createTime}, #{approverId}, #{result}, #{refuseReason}, #{approvalTime})
     </insert>
 
-    <select id="getLeaveApplicationById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getLeaveApplicationById" parameterType="java.lang.Long" resultMap="LeaveBaseResultMap">
         select * from application where application_id = #{applicationId}
     </select>
 
@@ -47,11 +47,11 @@
         update application set is_cancel = 1 where application_id = #{applicationId}
     </update>
 
-    <select id="getUserLeaveApplication" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getUserLeaveApplication" parameterType="java.lang.Long" resultMap="LeaveBaseResultMap">
         select * from application where applicant_id = #{userId}
     </select>
 
-    <select id="getAllLeaveApplication" resultMap="BaseResultMap">
+    <select id="getAllLeaveApplication" resultMap="LeaveBaseResultMap">
         select * from application where is_cancel = 0
     </select>
 

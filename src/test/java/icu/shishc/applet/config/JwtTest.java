@@ -24,15 +24,15 @@ public class JwtTest {
     @Test
     public void tokenTest() {
         User user = new User(
-                131232L,
-                "shishc",
-                "shishc",
-                "shishc",
-                "",
-                "xingpingshi",
-                "137...",
-                1,
-                1
+//                131232L,
+//                "shishc",
+//                "shishc",
+//                "shishc",
+//                "",
+//                "xingpingshi",
+//                "137...",
+//                1,
+//                1
         );
 
         String token = jwtUtil.genTokenByWXAccount(user);

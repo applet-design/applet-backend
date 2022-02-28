@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="icu.shishc.applet.mapper.ApplicationMapper">
-    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.MaterialApplication">
+    <resultMap id="MaterialBaseResultMap" type="icu.shishc.applet.entity.MaterialApplication">
         <id column="application_id" property="applicationId"/>
         <result column="applicant_id" property="applicantId"/>
         <result column="applicant_name" property="applicantName"/>
@@ -32,7 +32,7 @@
                          #{isUrgency}, #{location}, #{createTime}, #{approverId})
     </insert>
 
-    <select id="getMaterialApplicationById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getMaterialApplicationById" parameterType="java.lang.Long" resultMap="MaterialBaseResultMap">
         select * from material_application where application_id = #{materialApplicationId}
     </select>
 
@@ -40,7 +40,7 @@
         update material_application set is_cancel = 1 where application_id = #{materialApplicationId}
     </update>
 
-    <select id="getUserMaterialApplication" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getUserMaterialApplication" parameterType="java.lang.Long" resultMap="MaterialBaseResultMap">
         select * from material_application where applicant_id = #{userId}
     </select>
 

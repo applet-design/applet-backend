@@ -55,7 +55,7 @@
         where user_id = #{userId}
     </update>
 
-    <select id="getUserByList" resultMap="icu.shishc.applet.entity.User">
+    <select id="getUserByList" resultMap="BaseResultMap">
         select * from user where user_id =
                                  <foreach collection="userIds" item="userId">
                                      #{userId}
