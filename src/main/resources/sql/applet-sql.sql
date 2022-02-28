@@ -68,7 +68,7 @@ create table material_statistics (
     from_id bigint unsigned not null comment '发送者id，一般是管理员',
     create_time datetime default current_timestamp comment '发放完成时间',
     cost float not null comment '共多少money',
-    primary key(material_id) using btree
+    primary key(material_form_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
 
 -- ------------
