@@ -40,11 +40,11 @@ public interface ApplicationMapper {
 
     //查看所有待审批申请
     List<LeaveApplication> getPendingLeaveApplication();
-//
-//    //通过某个申请
-//    Integer adoptLeaveApplication(Long applicationId);
-//
-//    //拒绝某个申请
-//    Integer refuseLeaveApplication(Long applicationId, String refuseReason);
+
+    //通过某个申请
+    Integer adoptLeaveApplication(Long applicationId);
+
+    //拒绝某个申请
+    Integer refuseLeaveApplication(Long applicationId, String refuseReason);
 
 }

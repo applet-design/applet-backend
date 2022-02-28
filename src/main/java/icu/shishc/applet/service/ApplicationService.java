@@ -30,4 +30,16 @@ public interface ApplicationService {
 
     List<LeaveApplication> getUserLeaveApplication(Long userId);
 
+    // 查看所有未取消的出小区申请
+    List<LeaveApplication> getAllLeaveApplication();
+
+    //查看所有待审批申请
+    List<LeaveApplication> getPendingLeaveApplication();
+
+    //通过某个申请
+    Integer adoptLeaveApplication(Long applicationId);
+
+    //拒绝某个申请
+    Integer refuseLeaveApplication(Long applicationId, String refuseReason);
+
 }

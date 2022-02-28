@@ -55,5 +55,15 @@
         select * from application where is_cancel = 0
     </select>
 
-<!--    <select id="getPendingLeaveApplication" resultMap=""-->
+    <select id="getPendingLeaveApplication" resultMap="BaseResultMap">
+        select * from application where result = 0 and is_cancel = 0
+    </select>
+
+    <update id="adoptLeaveApplication" parameterType="java.lang.Long">
+        update application set result = 1 where application_id = #{applicationId}
+    </update>
+
+    <update id="refuseLeaveApplication">
+        update application set result = -1 and refuse_reason = #{refuseReason} where application_id = #{applicationId}
+    </update>
 </mapper>

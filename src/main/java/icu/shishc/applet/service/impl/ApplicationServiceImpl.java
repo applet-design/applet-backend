@@ -119,4 +119,44 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationMapper.getUserLeaveApplication(userId);
     }
 
+    /**
+     * 查看所有未取消的出小区申请
+     */
+    @Override
+    public List<LeaveApplication> getAllLeaveApplication() {
+        return applicationMapper.getAllLeaveApplication();
+    }
+
+    /**
+     * 查看所有待审核的出小区申请
+     */
+    @Override
+    public List<LeaveApplication> getPendingLeaveApplication() {
+        return applicationMapper.getPendingLeaveApplication();
+    }
+
+    /**
+     * 通过某个出小区申请
+     */
+    @Override
+    public Integer adoptLeaveApplication(Long applicationId) {
+        LeaveApplication application = applicationMapper.getLeaveApplicationById(applicationId);
+        if (application.getIsCancel() == 0 && application.getResult() == 0) {
+            return applicationMapper.adoptLeaveApplication(applicationId);
+        }
+        return 0;
+    }
+
+    /**
+     * 拒绝某个出小区申请
+     */
+    @Override
+    public Integer refuseLeaveApplication(Long applicationId, String refuseReason) {
+        LeaveApplication application = applicationMapper.getLeaveApplicationById(applicationId);
+        if (application.getIsCancel() == 0 && application.getResult() == 0) {
+            return applicationMapper.refuseLeaveApplication(applicationId, refuseReason);
+        }
+        return 0;
+    }
+
 }
