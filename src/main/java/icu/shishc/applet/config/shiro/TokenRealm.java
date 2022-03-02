@@ -32,11 +32,16 @@ public class TokenRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         User user = ((User) SecurityUtils.getSubject().getPrincipal());
-        List<Perms> permsList = userservice.getUserPerms(user.getUserIdentity());
-        for (Perms perm : permsList) {
-            info.addStringPermission(perm.getEntity().toUpperCase() + ":" + perm.getPerm().toUpperCase());
+        String role = "user";
+        if (user.getUserIdentity() == 1) {
+            role = "admin";
         }
-        System.out.println("TokenRealm[doGetAuthorizationInfo]: userId:" + user.getUserId() + " => info:" + info.getStringPermissions());
+        info.addRole(role);
+//        List<Perms> permsList = userservice.getUserPerms(user.getUserIdentity());
+//        for (Perms perm : permsList) {
+//            info.addStringPermission(perm.getEntity().toUpperCase() + ":" + perm.getPerm().toUpperCase());
+//        }
+        System.out.println("TokenRealm[doGetAuthorizationInfo]: userId:" + user.getUserId() + " => info:" + info.getRoles());
         return info;
     }
 

@@ -23,9 +23,11 @@ public class ShiroConfig {
         filterMap.put("token", new TokenFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
-//        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-//        filterChainDefinitionMap.put("", "");
-//        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/api/admin", "roles[admin]");
+        filterChainDefinitionMap.put("/api/login", "anon");
+        filterChainDefinitionMap.put("/api/**", "roles[user]");
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
     }
