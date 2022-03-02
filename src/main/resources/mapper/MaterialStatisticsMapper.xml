@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="icu.shishc.applet.mapper.MaterialStatisticsMapper">
+    <resultMap id="BaseResultMap" type="icu.shishc.applet.entity.MaterialStatistics">
+        <id column="material_form_id" property="materialFormId"/>
+        <result column="material_name" property="materialName"/>
+        <result column="material_num" property="materialNum"/>
+        <result column="cost" property="cost"/>
+    </resultMap>
+
+    <insert id="addMaterialStatistics" parameterType="icu.shishc.applet.entity.MaterialStatistics" useGeneratedKeys="true" keyProperty="materialFormId" keyColumn="material_form_id">
+        insert into material_statistics(material_name, material_num, cost) VALUES
+                (#{materialName}, #{materialNum}, #{cost})
+    </insert>
+
+    <update id="updateMaterialStatistics">
+        update material_statistics set material_num = #{materialNum},
+                                       cost = #{cost} where material_name = #{materialName}
+    </update>
+
+    <select id="getMaterialStatisticsByName" resultMap="BaseResultMap">
+        select * from material_statistics where material_name = #{materialName}
+    </select>
+
+    <select id="getAllStatistics" resultMap="BaseResultMap">
+        select * from material_statistics
+    </select>
+
+</mapper>

@@ -63,10 +63,10 @@ create table material_statistics (
     material_form_id bigint unsigned not null auto_increment comment '物资id',
     material_name varchar(50) not null comment '物资名称',
     material_num int not null comment '申请数量',
-    price float not null comment '物资单价',
-    receive_id bigint unsigned not null comment '接收者id',
-    from_id bigint unsigned not null comment '发送者id，一般是管理员',
-    create_time datetime default current_timestamp comment '发放完成时间',
+-- --     price float not null comment '物资单价',
+--     receive_id bigint unsigned not null comment '接收者id',
+--     from_id bigint unsigned not null comment '发送者id，一般是管理员',
+--     create_time datetime default current_timestamp comment '发放完成时间',
     cost float not null comment '共多少money',
     primary key(material_form_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;
@@ -124,7 +124,7 @@ create table application(
     create_time datetime not null default current_timestamp comment '申请提交时间',
     approver_id bigint unsigned not null comment '审批人id',
     result int default 0 comment '申请结果，-1申请不通过 0待审批 1审批通过',
-    refuseReason varchar(255) default '' comment '申请不通过原因',
+    refuse_reason varchar(255) default '' comment '申请不通过原因',
     approval_time datetime comment '待审批该字段为-1, 否则为处理表单时间',
     primary key(application_id) using btree
 )ENGINE=InnoDB character set = utf8mb4;

@@ -14,9 +14,5 @@ public class MaterialStatistics {
     private Long materialFormId;
     private String materialName;
     private Integer materialNum;
-    private Float price;
-    private Long receiveId;
-    private Long fromId;
-    private Date createTime;
     private Float cost;
 }

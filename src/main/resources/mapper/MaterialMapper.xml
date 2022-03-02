@@ -18,4 +18,8 @@
         delete from material where material_id = #{materialId}
     </delete>
 
+    <select id="getMaterial">
+        select material_id from material where material_name = #{materialName}
+    </select>
+
 </mapper>

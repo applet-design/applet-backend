@@ -8,6 +8,8 @@
         <result column="applicant_reason" property="applicantReason"/>
         <result column="material_name" property="materialName"/>
         <result column="material_num" property="materialNum"/>
+        <result column="price" property="price"/>
+        <result column="cost" property="cost"/>
         <result column="is_cancel" property="isCancel"/>
         <result column="is_urgency" property="isUrgency"/>
         <result column="location" property="location"/>
@@ -43,5 +45,31 @@
     <select id="getUserMaterialApplication" parameterType="java.lang.Long" resultMap="MaterialBaseResultMap">
         select * from material_application where applicant_id = #{userId}
     </select>
+
+    <select id="getAllMaterialApplication" resultMap="BaseResultMap">
+        select * from material_application where is_cancel = 0
+    </select>
+
+    <select id="getPendingMaterialApplication" resultMap="BaseResultMap">
+        select * from material_application where result = 0 and is_cancel = 0
+    </select>
+
+    <update id="adoptMaterialApplication">
+        update material_application set result = 1 ,
+                                        approval_time = now()
+        where application_id = #{applicationId}
+    </update>
+
+    <update id="refuseMaterialApplication">
+        update material_application set result = -1 ,
+                                        refuse_reason = #{refuseReason},
+                                        approval_time = now()
+        where application_id = #{applicationId}
+    </update>
+
+    <update id="updateMaterialApplication">
+        update material_application set price = #{price},
+                                        cost = #{cost} where application_id = #{applicationId}
+    </update>
 
 </mapper>

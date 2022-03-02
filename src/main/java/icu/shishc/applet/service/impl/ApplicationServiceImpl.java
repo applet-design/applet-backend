@@ -2,9 +2,12 @@ package icu.shishc.applet.service.impl;
 
 import icu.shishc.applet.controller.param.LeaveApplicationParam;
 import icu.shishc.applet.controller.param.MaterialApplicationParam;
+import icu.shishc.applet.controller.param.admin.AdoptMaterialApplicationParam;
 import icu.shishc.applet.entity.LeaveApplication;
 import icu.shishc.applet.entity.MaterialApplication;
+import icu.shishc.applet.entity.MaterialStatistics;
 import icu.shishc.applet.mapper.ApplicationMapper;
+import icu.shishc.applet.mapper.MaterialStatisticsMapper;
 import icu.shishc.applet.service.ApplicationService;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Resource
     ApplicationMapper applicationMapper;
+    @Resource
+    MaterialStatisticsMapper statisticsMapper;
 
     /**
      * 添加一条物资申请
@@ -67,6 +72,48 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public List<MaterialApplication> getUserMaterialApplication(Long userId) {
         return applicationMapper.getUserMaterialApplication(userId);
+    }
+
+    /**
+     * 查看所有待审批的物资申请
+     */
+    @Override
+    public List<MaterialApplication> getPendingMaterialApplication() {
+        return applicationMapper.getPendingMaterialApplication();
+    }
+
+    @Override
+    public Integer adoptMaterialApplication(AdoptMaterialApplicationParam param) {
+        MaterialApplication materialApplication = applicationMapper.getMaterialApplicationById(param.getMaterialApplicationId());
+        if (materialApplication.getIsCancel() == 1 || materialApplication.getResult() != 0) {
+            return 0;
+        }
+        Integer adoptResult = applicationMapper.adoptMaterialApplication(param.getMaterialApplicationId());
+        if (adoptResult == 1) {
+            MaterialStatistics statistics = statisticsMapper.getMaterialStatisticsByName(materialApplication.getMaterialName());
+            materialApplication.setPrice(param.getPrice());
+            materialApplication.setCost(materialApplication.getMaterialNum() * param.getPrice());
+            if (applicationMapper.updateMaterialApplication(materialApplication) != 1) {
+                return 0;
+
+            }
+            statistics.setMaterialNum(statistics.getMaterialNum() + materialApplication.getMaterialNum());
+            statistics.setCost(statistics.getCost() + materialApplication.getMaterialNum() * param.getPrice());
+            statisticsMapper.updateMaterialStatistics(statistics);
+        }
+        return adoptResult;
+    }
+
+    /**
+     * 拒绝一条物资申请
+     */
+    @Override
+    public Integer refuseMaterialApplication(Long materialApplicationId, String refuseReason) {
+        MaterialApplication materialApplication = applicationMapper.getMaterialApplicationById(materialApplicationId);
+        if (materialApplication.getIsCancel() == 1 || materialApplication.getResult() != 0) {
+            return 0;
+        }
+        return applicationMapper.refuseMaterialApplication(materialApplicationId, refuseReason);
     }
 
     /**

@@ -12,6 +12,8 @@ public interface MaterialMapper {
 
     List<Material> getMaterialList();
 
+    Long getMaterial(String materialName);
+
     Long addMaterial(Material material);
 
     Integer deleteMaterial(Long materialId);

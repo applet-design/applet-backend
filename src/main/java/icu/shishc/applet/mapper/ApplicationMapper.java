@@ -23,6 +23,21 @@ public interface ApplicationMapper {
     //查看某个用户的物资申请
     List<MaterialApplication> getUserMaterialApplication(Long userId);
 
+    // 更新某个物资申请
+    Integer updateMaterialApplication(MaterialApplication materialApplication);
+
+    // 查看所有物资申请不包括已经取消的
+    List<MaterialApplication> getAllMaterialApplication();
+
+    // 查看所有待审批的物资申请
+    List<MaterialApplication> getPendingMaterialApplication();
+
+    // 通过一个物资申请
+    Integer adoptMaterialApplication(Long applicationId);
+
+    // 拒绝一个物资申请
+    Integer refuseMaterialApplication(Long applicationId, String refuseReason);
+
     //增加一条出小区申请
     Long addLeaveApplication(LeaveApplication leaveApplication);
 
