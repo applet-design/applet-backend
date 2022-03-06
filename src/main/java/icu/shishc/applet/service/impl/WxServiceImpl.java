@@ -2,6 +2,7 @@ package icu.shishc.applet.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import icu.shishc.applet.config.shiro.JwtToken;
+import icu.shishc.applet.controller.dto.LoginDTO;
 import icu.shishc.applet.entity.User;
 import icu.shishc.applet.exception.CustomException;
 import icu.shishc.applet.mapper.UserMapper;
@@ -43,11 +44,10 @@ public class WxServiceImpl implements WxService {
     /**
      * wx用户登录
      * @param code 前端传来的 code
-     * @return token
      * @throws CustomException 微信服务可能请求失败
      */
     @Override
-    public String login(String code) throws CustomException {
+    public LoginDTO login(String code) throws CustomException {
         String resultJson = this.analysisUserInfo(code);
         WxLoginResponseVo loginResponse = JSONObject.toJavaObject(JSONObject.parseObject(resultJson), WxLoginResponseVo.class);
         System.out.println("loginResponse: " + loginResponse);
@@ -61,7 +61,8 @@ public class WxServiceImpl implements WxService {
             userMapper.insertUser(userInfo);
         }
         String token = jwtUtil.genTokenByWXAccount(userInfo);
-        return token;
+        System.out.println("WxService.login()=> userId:[" + userInfo.getUserId() +"], identity[" + userInfo.getUserIdentity() +"]");
+        return new LoginDTO(token, userInfo.getUserId(), userInfo.getUserIdentity());
     }
 
     /**

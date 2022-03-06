@@ -10,4 +10,5 @@ import java.io.Serializable;
 public class LoginDTO implements Serializable {
     String token;
     Long userId;
+    Integer userIdentity;
 }

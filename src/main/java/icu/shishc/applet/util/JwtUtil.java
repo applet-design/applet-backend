@@ -37,11 +37,12 @@ public class JwtUtil {
         // token
         String token = JWT.create()
                 .withClaim("userId", userinfo.getUserId())
-                .withClaim("openId", userinfo.getOpenId())
+//                .withClaim("openId", userinfo.getOpenId())
                 .withClaim("jwtId", jwtId)
                 // 过期时间. 单位是 ms 所以 *1000.
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRE_TIME * 1000))
                 .sign(algorithm);
+        System.out.println("jwtId-" + jwtId);
         stringRedisTemplate.opsForValue().set("jwtId-" + jwtId, token, EXPIRE_TIME, TimeUnit.SECONDS);
         return token;
     }
@@ -63,7 +64,7 @@ public class JwtUtil {
             Algorithm algorithm = Algorithm.HMAC256(secretKey);
             JWTVerifier verifier = JWT.require(algorithm)
                     .withClaim("userId", getUserIdByToken(token))
-                    .withClaim("openId", getOpenIdByToken(token))
+//                    .withClaim("openId", getOpenIdByToken(token))
                     .withClaim("jwtId", jwtId)
                     .acceptExpiresAt(System.currentTimeMillis() + EXPIRE_TIME * 1000)
                     .build();

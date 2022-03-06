@@ -1,5 +1,6 @@
 package icu.shishc.applet.config.shiro;
 
+import icu.shishc.applet.filter.MyRolesAuthorizationFilter;
 import icu.shishc.applet.filter.TokenFilter;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -21,12 +22,14 @@ public class ShiroConfig {
 
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         filterMap.put("token", new TokenFilter());
+        filterMap.put("roles", new MyRolesAuthorizationFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/api/admin", "roles[admin]");
         filterChainDefinitionMap.put("/api/login", "anon");
-        filterChainDefinitionMap.put("/api/**", "roles[user]");
+        filterChainDefinitionMap.put("/api/**", "token");
+        filterChainDefinitionMap.put("/api/admin", "roles[admin]");
+        filterChainDefinitionMap.put("/api/administration", "roles[administration]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
