@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+// 健康信息填报
 @RestController
 @RequestMapping(value = "/api")
 public class HealthInfoController {
@@ -16,6 +17,7 @@ public class HealthInfoController {
     @Resource
     HealthInfoService healthInfoService;
 
+    // 查看今天是否填报
     @RequestMapping(value = "/health/u", method = RequestMethod.GET)
     public ResultJson submitOrNot(@RequestBody HealthInfoSearchParam searchParam) {
         Long userId = searchParam.getUserId();
@@ -24,12 +26,14 @@ public class HealthInfoController {
         return ResultJson.ok(infoId);
     }
 
+    // 提交健康填报
     @RequestMapping(value = "/health", method = RequestMethod.POST)
     public ResultJson addTodayInfo(@RequestBody HealthInfoSubmitParam healthInfoSubmitParam) {
         Long infoId = healthInfoService.addTodayInfo(healthInfoSubmitParam);
         return ResultJson.ok(infoId);
     }
 
+    // 查看健康填报
     @RequestMapping(value = "/health", method = RequestMethod.GET)
     public ResultJson getInfoById(@RequestParam Long infoId) {
         HealthInfo healthInfo = healthInfoService.getInfoByHealthInfoId(infoId);

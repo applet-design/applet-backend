@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
+// 物资接口
 @RestController
 @RequestMapping(value = "/api")
 public class MaterialController {
@@ -17,6 +18,7 @@ public class MaterialController {
     @Resource
     MaterialStatisticsService materialStatisticsService;
 
+    // 查看当前可申请的物资
     @RequestMapping(value = "/material", method = RequestMethod.GET)
     public ResultJson getMaterialList() {
         List<Material> list = materialStatisticsService.getAllMaterial();

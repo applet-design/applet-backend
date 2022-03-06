@@ -23,6 +23,7 @@ public class ReportController {
         return ResultJson.ok(reportId);
     }
 
+    // 查看外来人员报备单
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public ResultJson getReport(@RequestParam Long reportId) {
         Report report = reportService.getReportById(reportId);
