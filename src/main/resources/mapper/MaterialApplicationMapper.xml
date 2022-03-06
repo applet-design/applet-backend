@@ -46,11 +46,11 @@
         select * from material_application where applicant_id = #{userId}
     </select>
 
-    <select id="getAllMaterialApplication" resultMap="BaseResultMap">
+    <select id="getAllMaterialApplication" resultMap="MaterialBaseResultMap">
         select * from material_application where is_cancel = 0
     </select>
 
-    <select id="getPendingMaterialApplication" resultMap="BaseResultMap">
+    <select id="getPendingMaterialApplication" resultMap="MaterialBaseResultMap">
         select * from material_application where result = 0 and is_cancel = 0
     </select>
 

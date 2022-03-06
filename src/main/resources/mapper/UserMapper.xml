@@ -15,7 +15,7 @@
     </resultMap>
 
     <select id="getUserByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select user_id, open_id from user where open_id = #{openId}
+        select user_id from user where open_id = #{openId}
     </select>
 
     <select id="getUserByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">

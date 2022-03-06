@@ -1,12 +1,15 @@
 package icu.shishc.applet.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import icu.shishc.applet.config.shiro.JwtToken;
 import icu.shishc.applet.entity.User;
 import icu.shishc.applet.exception.CustomException;
 import icu.shishc.applet.mapper.UserMapper;
 import icu.shishc.applet.service.WxService;
 import icu.shishc.applet.util.JwtUtil;
 import icu.shishc.applet.vo.WxLoginResponseVo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -27,10 +30,8 @@ public class WxServiceImpl implements WxService {
     private static final String LOGIN_URL = "https://api.weixin.qq.com/sns/jscode2session";
     private static final String grantType = "authorization_code";
 
-    @Value("${wx-properties.wx-appid}")
-    private static String appId;
-    @Value("${wx-properties.wx-secret}")
-    private static String secret;
+    private static final String appId = "wxc734369caf37fe10";
+    private static final String secret = "c0918a593b9420a6e6acd4b6da29695c";
 
     @Resource
     RestTemplate restTemplate;
@@ -49,6 +50,7 @@ public class WxServiceImpl implements WxService {
     public String login(String code) throws CustomException {
         String resultJson = this.analysisUserInfo(code);
         WxLoginResponseVo loginResponse = JSONObject.toJavaObject(JSONObject.parseObject(resultJson), WxLoginResponseVo.class);
+        System.out.println("loginResponse: " + loginResponse);
         if (!loginResponse.getErrcode().equals("0")) {
             throw new CustomException("wxApi.login=> bad request.", HttpStatus.OK);
         }

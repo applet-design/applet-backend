@@ -54,7 +54,7 @@
         select * from application where is_cancel = 0
     </select>
 
-    <select id="getPendingLeaveApplication" resultMap="BaseResultMap">
+    <select id="getPendingLeaveApplication" resultMap="LeaveBaseResultMap">
         select * from application where result = 0 and is_cancel = 0
     </select>
 
